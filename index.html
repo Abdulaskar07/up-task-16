@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Box</title>
+    <style>
+        .container{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        nav{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 2px solid blue;
+        }
+        nav h2{
+            color: rgb(3, 3, 74);
+            margin-left: -20vw;
+        }
+        nav button{
+            background-color: lightblue;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: rgb(13, 13, 26);
+            font-weight: 700;
+            transform: translateX(15vw);
+        }
+        .Search{
+            height: 8vh;
+            width: 90vw;
+            margin-top: 20px;
+            align-content: center;
+            /* background-color: red; */
+            /* color: lightblue; */
+        }
+        
+        .Search input{
+            width: 30vw;
+            height: 5vh;
+            font-size: larger;
+            border: 2px solid blue;
+            color: blue;
+            
+        }
+        .Search input::placeholder{
+            color: blue;       
+         }
+        .Search button{
+            width: 10vw;
+            height: 5.8vh;
+            border: none;
+            margin-left:-5px ;
+            transform: translateY(-2px);
+            background-color: blue;
+            color: lightblue;            
+        }
+        #display{
+            display: flex;
+            gap: 2vh;
+            margin-top: 5vh;
+            padding:  10px 30px;
+            flex-wrap: wrap;
+        }
+        .card{
+            width: 10vw;
+            height: 20vh;
+            color:rgb(3, 3, 74);
+            padding: 10px 20px;
+            border: 1px solid rgb(3, 3, 74);
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px gray ;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h2>Hi,Username</h2>
+            <button>Login</button>
+        </nav>
+        <div class="Search">
+            <input type="text" placeholder="Search here  " id="input">
+            <button onclick="Search()">Search</button>
+        </div>
+        <div id="display">
+
+        </div>
+        
+        
+    </div>
+
+    <script>
+        const data = [
+    {"Username":"Abdulaskar","Age":"18","Place":"Trichy"},
+    {"Username":"Abdulashik","Age":"18","Place":"Trichy"},
+    {"Username":"Deena","Age":"18","Place":"Trichy"},
+    {"Username":"Sherif","Age":"18","Place":"Trichy"},
+    {"Username":"Siraj","Age":"18","Place":"Trichy"},
+    {"Username":"Sankar","Age":"18","Place":"Trichy"},
+    {"Username":"Shivam","Age":"18","Place":"Trichy"},
+    {"Username":"Sri","Age":"18","Place":"Trichy"},
+    {"Username":"Zara","Age":"18","Place":"Trichy"},
+    {"Username":"Sanjay","Age":"18","Place":"Trichy"},
+    {"Username":"Soonu","Age":"18","Place":"Trichy"},
+    {"Username":"Paari","Age":"18","Place":"Trichy"},
+
+    ];
+
+    var display = document.getElementById('display');
+    
+    var data2 = data;
+    Render(data2)
+    
+    
+    function Search(){
+        var input = document.getElementById("input").value;
+         data2 = data.filter(element=>(element.Username.toLowerCase()).includes(input.toLowerCase()));
+         display.innerHTML ='';
+         Render(data2);
+         
+    }
+      
+    function Render(data2){
+        data2.forEach(element => {
+        var container =document.createElement('div');
+        container.className ="card";
+        var name = document.createElement('h2')
+        name.innerText = element.Username;
+        var age = document.createElement('h4')
+        age.innerText = element.Age;
+        var place = document.createElement('p')
+        place.innerText = element.Place;
+        container.appendChild(name)
+        container.appendChild(age)
+        container.appendChild(place)
+        console.log(container.className)
+        display.appendChild(container)  
+    });
+    }
+    
+    
+        
+    </script>
+    
+</body>
+</html>
